@@ -6,10 +6,11 @@ const {
   createUser,
   deleteUser,
 } = require("../controllers/user.controller");
+const { pathMiddleware } = require("../middlewares/pathMiddleware")
 
 const userRouter = router();
 
-userRouter.route("/").get(getUsers).post(createUser);
+userRouter.route("/").get(pathMiddleware, getUsers).post(createUser);
 userRouter.route("/:userId")
 .get(gethUser)
 .patch(updateUser)
